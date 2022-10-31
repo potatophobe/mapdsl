@@ -3,8 +3,11 @@ package ru.potatophobe.mapdsl.api
 @Mapdsl
 interface DelegateMappingScope<I> {
     @Mapdsl
-    val path: String
+    val input: I
 
     @Mapdsl
-    val input: I
+    val inputPath: String
+
+    @Mapdsl
+    val outputPath: String
 }

@@ -16,12 +16,18 @@ interface TypeMappingScope {
     @Mapdsl
     fun <I : Any, O : Any> mapping(mappingBlock: PropertyMappingScope<I, O>.() -> Unit): PropertyMapping<I, O>
 
+    fun toMapping(): Mapping
+
     @Mapdsl
     infix fun <I : Any, O : Any> FromDescriptor<I>.map(to: ToDescriptor<O>): MapByDescriptor<I, O>
 
     @Mapdsl
-    interface FromDescriptor<I : Any>
+    interface FromDescriptor<I : Any> {
+        val inputType: KClass<I>
+    }
 
     @Mapdsl
-    interface ToDescriptor<O : Any>
+    interface ToDescriptor<O : Any> {
+        val outputType: KClass<O>
+    }
 }
